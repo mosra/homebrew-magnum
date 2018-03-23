@@ -1,8 +1,8 @@
 # kate: indent-width 2;
 
 class MagnumExtras < Formula
-  desc "Extras for Magnum graphics engine"
-  homepage "https://github.com/mosra/magnum"
+  desc "Extras for the Magnum C++11/C++14 graphics engine"
+  homepage "http://magnum.graphics"
   head "git://github.com/mosra/magnum-extras.git"
 
   depends_on "cmake"
