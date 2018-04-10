@@ -6,6 +6,9 @@ matrix:
     os: osx
 
 install:
+# This fails for some reason, install it explicitly like this
+- brew install fontconfig || true
+
 - brew install --HEAD mosra/magnum/corrade
 - brew install --HEAD mosra/magnum/magnum
 - brew install --HEAD mosra/magnum/magnum-plugins
