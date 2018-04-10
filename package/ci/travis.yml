@@ -1,0 +1,20 @@
+# kate: indent-width 2;
+
+matrix:
+  include:
+  - language: cpp
+    os: osx
+
+install:
+- brew install --HEAD mosra/magnum/corrade
+- brew install --HEAD mosra/magnum/magnum
+- brew install --HEAD mosra/magnum/magnum-plugins
+- brew install --HEAD mosra/magnum/magnum-extras
+- brew install --HEAD mosra/magnum/magnum-integration
+- brew install --HEAD mosra/magnum/magnum-examples
+
+script:
+# Verify all libraries are in RPATH, plugin path is correctly set and it
+# doesn't crash on startup
+- magnum-imageconverter package/ci/file.jpg file.png
+- file file.png
