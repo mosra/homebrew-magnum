@@ -3,8 +3,8 @@
 class MagnumIntegration < Formula
   desc "Integration libraries for the Magnum C++11/C++14 graphics engine"
   homepage "http://magnum.graphics"
-  url "https://github.com/mosra/magnum-integration/archive/v2018.02.tar.gz"
-  sha256 "e7ec9feb856e6cf9abf1da7cefdb66e724c560619197c548a97248feddbb8714"
+  url "https://github.com/mosra/magnum-integration/archive/v2018.04.tar.gz"
+  sha256 "22755fe11e28e5fa48a5fdaf5ea79f2b0fda80b5aed39f17b4c6b8d22ff02798"
   head "git://github.com/mosra/magnum-integration.git"
 
   depends_on "cmake"

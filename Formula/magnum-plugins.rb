@@ -3,8 +3,8 @@
 class MagnumPlugins < Formula
   desc "Plugins for the Magnum C++11/C++14 graphics engine"
   homepage "http://magnum.graphics"
-  url "https://github.com/mosra/magnum-plugins/archive/v2018.02.tar.gz"
-  sha256 "6f4523d2076c24a0d6eddc02aadc5bae4b48d57215882c2335eec44a1559e66d"
+  url "https://github.com/mosra/magnum-plugins/archive/v2018.04.tar.gz"
+  sha256 "247801d00321caf2be1d3ff95ec2980fc1e1218910c8a5df22be107a1fdd24dd"
   head "git://github.com/mosra/magnum-plugins.git"
 
   depends_on "assimp"
