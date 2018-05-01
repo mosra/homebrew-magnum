@@ -4,17 +4,26 @@ matrix:
   include:
   - language: cpp
     os: osx
+    env:
+    - VERSION=HEAD
+  - language: cpp
+    os: osx
+    env:
+    - VERSION=stable
 
 install:
 # This fails for some reason, install it explicitly like this
 - brew install fontconfig || true
 
-- brew install --HEAD mosra/magnum/corrade
-- brew install --HEAD mosra/magnum/magnum
-- brew install --HEAD mosra/magnum/magnum-plugins
-- brew install --HEAD mosra/magnum/magnum-extras
-- brew install --HEAD mosra/magnum/magnum-integration
-- brew install --HEAD mosra/magnum/magnum-examples
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/corrade; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-plugins; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-extras; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-integration; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-examples; fi
+
+# For stable version it should pull all dependencies automagically
+- if [ "$VERSION" == "stable" ]; then brew install mosra/magnum/magnum-examples; fi
 
 script:
 # Verify all libraries are in RPATH, plugin path is correctly set and it
