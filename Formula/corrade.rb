@@ -2,9 +2,9 @@
 
 class Corrade < Formula
   desc "C++11/C++14 multiplatform utility library"
-  homepage "http://magnum.graphics/corrade/"
-  url "https://github.com/mosra/corrade/archive/v2018.04.tar.gz"
-  sha256 "dc4b0eb793db5aeeec19af76adc4a1079ccfc3d8a8e38e702b6fb773fa0197f4"
+  homepage "https://magnum.graphics/corrade/"
+  url "https://github.com/mosra/corrade/archive/v2018.10.tar.gz"
+  sha256 "a1aea381e512da2ae3b92687bdc7b20152a773f1bb64f36f31cd6b3cef9652a5"
   head "git://github.com/mosra/corrade.git"
 
   depends_on "cmake"

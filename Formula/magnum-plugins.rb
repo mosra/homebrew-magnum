@@ -2,9 +2,9 @@
 
 class MagnumPlugins < Formula
   desc "Plugins for the Magnum C++11/C++14 graphics engine"
-  homepage "http://magnum.graphics"
-  url "https://github.com/mosra/magnum-plugins/archive/v2018.04.tar.gz"
-  sha256 "247801d00321caf2be1d3ff95ec2980fc1e1218910c8a5df22be107a1fdd24dd"
+  homepage "https://magnum.graphics"
+  url "https://github.com/mosra/magnum-plugins/archive/v2018.10.tar.gz"
+  sha256 "e9ccc6a8f5e7adc910533795509dfda730b5982924416dc9faed583ecb31c858"
   head "git://github.com/mosra/magnum-plugins.git"
 
   depends_on "assimp"
@@ -19,7 +19,7 @@ class MagnumPlugins < Formula
   def install
     system "mkdir build"
     cd "build" do
-      system "cmake", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DWITH_ASSIMPIMPORTER=ON", "-DWITH_DDSIMPORTER=ON", "-DWITH_DEVILIMAGEIMPORTER=ON", "-DWITH_DRFLACAUDIOIMPORTER=ON", "-DWITH_DRWAVAUDIOIMPORTER=ON", "-DWITH_FREETYPEFONT=ON", "-DWITH_HARFBUZZFONT=ON", "-DWITH_JPEGIMPORTER=ON", "-DWITH_MINIEXRIMAGECONVERTER=ON", "-DWITH_OPENGEXIMPORTER=ON", "-DWITH_PNGIMAGECONVERTER=ON", "-DWITH_PNGIMPORTER=ON", "-DWITH_STANFORDIMPORTER=ON", "-DWITH_STBIMAGECONVERTER=ON", "-DWITH_STBIMAGEIMPORTER=ON", "-DWITH_STBTRUETYPEFONT=ON", "-DWITH_STBVORBISAUDIOIMPORTER=ON", "-DWITH_TINYGLTFIMPORTER=ON", ".."
+      system "cmake", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DWITH_ASSIMPIMPORTER=ON", "-DWITH_DDSIMPORTER=ON", "-DWITH_DEVILIMAGEIMPORTER=ON", "-DWITH_DRFLACAUDIOIMPORTER=ON", "-DWITH_DRWAVAUDIOIMPORTER=ON", "-DWITH_FREETYPEFONT=ON", "-DWITH_HARFBUZZFONT=ON", "-DWITH_JPEGIMAGECONVERTER=ON", "-DWITH_JPEGIMPORTER=ON", "-DWITH_MINIEXRIMAGECONVERTER=ON", "-DWITH_OPENGEXIMPORTER=ON", "-DWITH_PNGIMAGECONVERTER=ON", "-DWITH_PNGIMPORTER=ON", "-DWITH_STANFORDIMPORTER=ON", "-DWITH_STBIMAGECONVERTER=ON", "-DWITH_STBIMAGEIMPORTER=ON", "-DWITH_STBTRUETYPEFONT=ON", "-DWITH_STBVORBISAUDIOIMPORTER=ON", "-DWITH_TINYGLTFIMPORTER=ON", ".."
       system "cmake", "--build", "."
       system "cmake", "--build", ".", "--target", "install"
     end
