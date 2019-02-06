@@ -1,13 +1,20 @@
-OSX Homebrew packages for Magnum and related projects
-#####################################################
+macOS Homebrew packages for Magnum and related projects
+=======================================================
 
-Install any of the formulas using this:
+[![Join the chat at https://gitter.im/mosra/magnum](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mosra/magnum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/mosra/homebrew-magnum.svg?branch=master)](https://travis-ci.org/mosra/homebrew-magnum)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+Install any of the formulas like this:
 
     brew install mosra/magnum/magnum
 
 Or add the tap:
 
     brew tap mosra/magnum
+
+Check the [Magnum documentation](https://doc.magnum.graphics/magnum/building.html#building-packages-brew)
+for further details.
 
 CONTACT & SUPPORT
 =================
@@ -22,11 +29,15 @@ possible.
 
 -   Project homepage — https://magnum.graphics/
 -   Documentation — https://doc.magnum.graphics/
--   GitHub project page — https://github.com/mosra/magnum-plugins
+-   GitHub — https://github.com/mosra/homebrew-magnum and the
+    [#magnum](https://github.com/topics/magnum) topic
+-   GitLab — https://gitlab.com/mosra/magnum
 -   Gitter community chat — https://gitter.im/mosra/magnum
 -   E-mail — info@magnum.graphics
--   Google Groups mailing list — magnum-engine@googlegroups.com ([archive](https://groups.google.com/forum/#!forum/magnum-engine))
--   Author's personal Twitter — https://twitter.com/czmosra
+-   Google Groups mailing list — magnum-engine@googlegroups.com
+    ([archive](https://groups.google.com/forum/#!forum/magnum-engine))
+-   Twitter — https://twitter.com/czmosra and the
+    [#MagnumEngine](https://twitter.com/hashtag/MagnumEngine) hashtag
 
 See also the Magnum Project [Contact & Support page](https://magnum.graphics/contact/)
 for further information.
