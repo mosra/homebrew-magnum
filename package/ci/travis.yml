@@ -14,6 +14,10 @@ matrix:
     - JOBID=stable
 
 install:
+# Check on what version we are now
+- brew update
+- brew --version
+
 # This fails for some reason, install it explicitly like this
 - brew install fontconfig || true
 
