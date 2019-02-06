@@ -21,6 +21,9 @@ install:
 # This fails for some reason, install it explicitly like this
 - brew install fontconfig || true
 
+# Somehow this is needed since 2.0, wtf
+- brew tap mosra/magnum
+
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/corrade; fi
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum; fi
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-plugins; fi
