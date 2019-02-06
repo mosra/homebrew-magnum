@@ -6,10 +6,12 @@ matrix:
     os: osx
     env:
     - VERSION=HEAD
+    - JOBID=head
   - language: cpp
     os: osx
     env:
     - VERSION=stable
+    - JOBID=stable
 
 install:
 # This fails for some reason, install it explicitly like this
