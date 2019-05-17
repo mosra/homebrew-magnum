@@ -11,7 +11,7 @@ class MagnumIntegration < Formula
   depends_on "glm"
   depends_on "magnum"
   depends_on "bullet"
-  depends_on "dart"
+  depends_on "dartsim"
 
   def install
     system "mkdir build"
