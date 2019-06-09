@@ -13,7 +13,8 @@ Or add the tap:
 
     brew tap mosra/magnum
 
-Check the [Magnum documentation](https://doc.magnum.graphics/magnum/building.html#building-packages-brew)
+Check the [Magnum C++ docs](https://doc.magnum.graphics/magnum/building.html#building-packages-brew)
+and [Magnum Python docs](https://doc.magnum.graphics/python/building.html#homebrew-formulas-for-macos)
 for further details.
 
 CONTACT & SUPPORT
