@@ -27,13 +27,19 @@ install:
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-plugins; fi
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-extras; fi
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-integration; fi
+- if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-bindings; fi
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-examples; fi
 
 # For stable version it should pull all dependencies automagically
 - if [ "$VERSION" == "stable" ]; then brew install mosra/magnum/magnum-examples; fi
+# TODO: bindings, once a stable version is out
 
 script:
 # Verify all libraries are in RPATH, plugin path is correctly set and it
 # doesn't crash on startup
 - magnum-imageconverter package/ci/file.jpg file.png
 - file file.png
+
+# Basic verification of Python bindings
+# TODO: enable for all once stable is out
+- if [ "$VERSION" == "HEAD" ]; then python3 -c "from magnum import *; print(Matrix3.rotation(Deg(25.0)))"; fi
