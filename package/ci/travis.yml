@@ -31,8 +31,7 @@ install:
 - if [ "$VERSION" == "HEAD" ]; then brew install --HEAD mosra/magnum/magnum-examples; fi
 
 # For stable version it should pull all dependencies automagically
-- if [ "$VERSION" == "stable" ]; then brew install mosra/magnum/magnum-examples; fi
-# TODO: bindings, once a stable version is out
+- if [ "$VERSION" == "stable" ]; then brew install mosra/magnum/magnum-examples mosra/magnum/magnum-bindings; fi
 
 script:
 # Verify all libraries are in RPATH, plugin path is correctly set and it
@@ -41,5 +40,4 @@ script:
 - file file.png
 
 # Basic verification of Python bindings
-# TODO: enable for all once stable is out
-- if [ "$VERSION" == "HEAD" ]; then python3 -c "from magnum import *; print(Matrix3.rotation(Deg(25.0)))"; fi
+- python3 -c "from magnum import *; print(Matrix3.rotation(Deg(25.0)))"
