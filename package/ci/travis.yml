@@ -29,6 +29,11 @@ install:
 # magnum itself, only plugins, only PngImporter/PngImageConverter. APPLE!!
 - sudo xcode-select -s /Library/Developer/CommandLineTools
 
+# FUCK THIS FUCKING HELL FUCK WHY CAN'T THIS WORK ALREADY IT'S BEEN OVER SIX
+# MONTHS ALREADY GODDAMIT
+# https://discuss.circleci.com/t/brew-link-step-failing-on-python-dependency/33925/2
+- brew unlink python@2
+
 # Check on what version we are now
 - brew update
 - brew --version
