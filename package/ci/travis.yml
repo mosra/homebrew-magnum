@@ -2,11 +2,13 @@ matrix:
   include:
   - language: cpp
     os: osx
+    osx_image: xcode10.3
     env:
     - VERSION=HEAD
     - JOBID=head
   - language: cpp
     os: osx
+    osx_image: xcode10.3
     env:
     - VERSION=stable
     - JOBID=stable
