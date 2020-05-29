@@ -14,6 +14,21 @@ matrix:
     - JOBID=stable
 
 install:
+# Brown magic. If I don't do this, the cursed thing fails compiling
+# magnum-plugins with the following:
+#
+# /usr/local/include/Magnum/Math/Vector.h:49:17: error: expected unqualified-id
+#     return std::isnan(UnderlyingTypeOf<T>(value));
+#                 ^
+# /Applications/Xcode-11.5.GM.Seed.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/math.h:165:5: note: expanded from macro 'isnan'
+#     ( sizeof(x) == sizeof(float)  ? __inline_isnanf((float)(x))          \
+#     ^
+#
+# (Mostly useless) source: https://github.com/PointCloudLibrary/pcl/issues/2601
+# Impossible to reproduce with a non-homebrew build. Does not happen with
+# magnum itself, only plugins, only PngImporter/PngImageConverter. APPLE!!
+- sudo xcode-select -s /Library/Developer/CommandLineTools
+
 # Check on what version we are now
 - brew update
 - brew --version
