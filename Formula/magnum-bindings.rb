@@ -14,7 +14,11 @@ class MagnumBindings < Formula
   def install
     system "mkdir build"
     cd "build" do
-      system "cmake", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DWITH_PYTHON=ON", ".."
+      system "cmake",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+        "-DWITH_PYTHON=ON",
+        ".."
       system "cmake", "--build", "."
       system "cmake", "--build", ".", "--target", "install"
       cd "src/python" do

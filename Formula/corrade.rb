@@ -11,7 +11,10 @@ class Corrade < Formula
   def install
     system "mkdir build"
     cd "build" do
-      system "cmake", "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_INSTALL_PREFIX=#{prefix}", ".."
+      system "cmake",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+        ".."
       system "cmake", "--build", "."
       system "cmake", "--build", ".", "--target", "install"
     end
