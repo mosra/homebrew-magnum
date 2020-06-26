@@ -9,8 +9,14 @@ class MagnumExamples < Formula
   depends_on "cmake"
   depends_on "magnum"
   depends_on "magnum-plugins"
-  depends_on "magnum-integration"
   depends_on "magnum-extras"
+
+  depends_on "dartsim" => :optional
+  if build.with? "dartsim"
+      depends_on "magnum-integration" => "with-dartsim"
+  else
+      depends_on "magnum-integration"
+  end
 
   def install
     system "mkdir build"
@@ -28,7 +34,7 @@ class MagnumExamples < Formula
         "-DWITH_BOX2D_EXAMPLE=OFF",
         "-DWITH_BULLET_EXAMPLE=ON",
         "-DWITH_CUBEMAP_EXAMPLE=ON",
-        "-DWITH_DART_EXAMPLE=ON",
+        "-DWITH_DART_EXAMPLE=#{(build.with? 'dartsim') ? 'ON' : 'OFF'}",
         "-DWITH_FLUIDSIMULATION2D_EXAMPLE=OFF",
         "-DWITH_FLUIDSIMULATION3D_EXAMPLE=OFF",
         "-DWITH_IMGUI_EXAMPLE=ON",

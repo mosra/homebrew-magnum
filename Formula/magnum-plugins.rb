@@ -6,15 +6,15 @@ class MagnumPlugins < Formula
   sha256 "d475e7d153a926e3194f9f7f7716e9530214e35b829438f8900c5c0c84741d03"
   head "git://github.com/mosra/magnum-plugins.git"
 
-  depends_on "assimp"
-  depends_on "cmake"
+  depends_on "assimp" => :recommended
+  depends_on "cmake" => :build
   depends_on "magnum"
-  depends_on "devil"
-  depends_on "faad2"
-  depends_on "freetype"
-  depends_on "harfbuzz"
-  depends_on "libpng"
-  depends_on "jpeg"
+  depends_on "devil" => :optional
+  depends_on "faad2" => :optional
+  depends_on "freetype" => :recommended
+  depends_on "harfbuzz" => :recommended
+  depends_on "libpng" => :recommended
+  depends_on "jpeg" => :recommended
 
   def install
     # Bundle Basis Universal, a commit that's before the UASTC support (which
@@ -46,24 +46,24 @@ class MagnumPlugins < Formula
       system "cmake",
         "-DCMAKE_BUILD_TYPE=Release",
         "-DCMAKE_INSTALL_PREFIX=#{prefix}",
-        "-DWITH_ASSIMPIMPORTER=ON",
+        "-DWITH_ASSIMPIMPORTER=#{(build.with? 'assimp') ? 'ON' : 'OFF'}",
         "-DWITH_BASISIMAGECONVERTER=#{basis}",
         "-DWITH_BASISIMPORTER=#{basis}",
         "-DWITH_DDSIMPORTER=ON",
-        "-DWITH_DEVILIMAGEIMPORTER=ON",
+        "-DWITH_DEVILIMAGEIMPORTER=#{(build.with? 'devil') ? 'ON' : 'OFF'}",
         "-DWITH_DRFLACAUDIOIMPORTER=ON",
         "-DWITH_DRMP3AUDIOIMPORTER=ON",
         "-DWITH_DRWAVAUDIOIMPORTER=ON",
-        "-DWITH_FAAD2AUDIOIMPORTER=ON",
-        "-DWITH_FREETYPEFONT=ON",
-        "-DWITH_HARFBUZZFONT=ON",
-        "-DWITH_JPEGIMAGECONVERTER=ON",
-        "-DWITH_JPEGIMPORTER=ON",
+        "-DWITH_FAAD2AUDIOIMPORTER=#{(build.with? 'faad2') ? 'ON' : 'OFF'}",
+        "-DWITH_FREETYPEFONT=#{(build.with? 'freetype') ? 'ON' : 'OFF'}",
+        "-DWITH_HARFBUZZFONT=#{(build.with? 'harfbuzz') ? 'ON' : 'OFF'}",
+        "-DWITH_JPEGIMAGECONVERTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
+        "-DWITH_JPEGIMPORTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
         "-DWITH_MESHOPTIMIZERSCENECONVERTER=ON",
         "-DWITH_MINIEXRIMAGECONVERTER=ON",
         "-DWITH_OPENGEXIMPORTER=ON",
-        "-DWITH_PNGIMAGECONVERTER=ON",
-        "-DWITH_PNGIMPORTER=ON",
+        "-DWITH_PNGIMAGECONVERTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
+        "-DWITH_PNGIMPORTER=#{build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PRIMITIVEIMPORTER=ON",
         "-DWITH_STANFORDIMPORTER=ON",
         "-DWITH_STANFORDSCENECONVERTER=ON",
