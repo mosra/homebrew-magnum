@@ -63,7 +63,7 @@ class MagnumPlugins < Formula
         "-DWITH_MINIEXRIMAGECONVERTER=ON",
         "-DWITH_OPENGEXIMPORTER=ON",
         "-DWITH_PNGIMAGECONVERTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
-        "-DWITH_PNGIMPORTER=#{build.with? 'libpng') ? 'ON' : 'OFF'}",
+        "-DWITH_PNGIMPORTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PRIMITIVEIMPORTER=ON",
         "-DWITH_STANFORDIMPORTER=ON",
         "-DWITH_STANFORDSCENECONVERTER=ON",
