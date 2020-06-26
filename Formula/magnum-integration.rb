@@ -14,6 +14,13 @@ class MagnumIntegration < Formula
   depends_on "dartsim"
 
   def install
+    # Bundle ImGui
+    system "curl", "-L", "https://github.com/ocornut/imgui/archive/v1.76.tar.gz", "-o", "src/MagnumExternal/imgui.tar.gz"
+    cd "src/MagnumExternal" do
+      system "mkdir", "ImGui"
+      system "tar", "xzvf", "imgui.tar.gz", "-C", "ImGui", "--strip-components=1"
+    end
+
     system "mkdir build"
     cd "build" do
       system "cmake",
@@ -23,7 +30,7 @@ class MagnumIntegration < Formula
         "-DWITH_DART=ON",
         "-DWITH_EIGEN=ON",
         "-DWITH_GLM=ON",
-        "-DWITH_IMGUI=OFF",
+        "-DWITH_IMGUI=ON",
         ".."
       system "cmake", "--build", "."
       system "cmake", "--build", ".", "--target", "install"
