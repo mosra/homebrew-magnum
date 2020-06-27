@@ -1,9 +1,9 @@
 class MagnumPlugins < Formula
   desc "Plugins for the Magnum C++11/C++14 graphics engine"
   homepage "https://magnum.graphics"
-  url "https://github.com/mosra/magnum-plugins/archive/v2019.10.tar.gz"
-  # wget https://github.com/mosra/magnum-plugins/archive/v2019.10.tar.gz -O - | sha256sum
-  sha256 "d475e7d153a926e3194f9f7f7716e9530214e35b829438f8900c5c0c84741d03"
+  url "https://github.com/mosra/magnum-plugins/archive/v2020.06.tar.gz"
+  # wget https://github.com/mosra/magnum-plugins/archive/v2020.06.tar.gz -O - | sha256sum
+  sha256 "8650cab43570c826d2557d5b42459150d253316f7f734af8b3e7d0883510b40a"
   head "git://github.com/mosra/magnum-plugins.git"
 
   depends_on "assimp" => :recommended
@@ -35,20 +35,14 @@ class MagnumPlugins < Formula
       system "tar", "xzvf", "meshoptimizer.tar.gz", "-C", "meshoptimizer", "--strip-components=1"
     end
 
-    # Temporarily disable Basis on 2019.10 because there it doesn't understand
-    # the bundled location yet and would fail. MeshOptimizer wasn't there yet
-    # so that's okay; we don't care that the sources are downloaded above but
-    # unused. TODO: remove when next stable is out
-    basis = head? ? "ON" : "OFF"
-
     system "mkdir build"
     cd "build" do
       system "cmake",
         "-DCMAKE_BUILD_TYPE=Release",
         "-DCMAKE_INSTALL_PREFIX=#{prefix}",
         "-DWITH_ASSIMPIMPORTER=#{(build.with? 'assimp') ? 'ON' : 'OFF'}",
-        "-DWITH_BASISIMAGECONVERTER=#{basis}",
-        "-DWITH_BASISIMPORTER=#{basis}",
+        "-DWITH_BASISIMAGECONVERTER=ON",
+        "-DWITH_BASISIMPORTER=ON",
         "-DWITH_DDSIMPORTER=ON",
         "-DWITH_DEVILIMAGEIMPORTER=#{(build.with? 'devil') ? 'ON' : 'OFF'}",
         "-DWITH_DRFLACAUDIOIMPORTER=ON",

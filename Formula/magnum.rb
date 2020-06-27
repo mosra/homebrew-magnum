@@ -1,9 +1,9 @@
 class Magnum < Formula
   desc "C++11/C++14 graphics middleware for games and data visualization"
   homepage "https://magnum.graphics"
-  url "https://github.com/mosra/magnum/archive/v2019.10.tar.gz"
-  # wget https://github.com/mosra/magnum/archive/v2019.10.tar.gz -O - | sha256sum
-  sha256 "375e8e03b1848b166387baee4ac4082c75a97fd234f01cd9e5187e0161968584"
+  url "https://github.com/mosra/magnum/archive/v2020.06.tar.gz"
+  # wget https://github.com/mosra/magnum/archive/v2020.06.tar.gz -O - | sha256sum
+  sha256 "98dfe802e56614e4e6bf750d9b693de46a5ed0c6eb479b0268f1a20bf34268bf"
   head "git://github.com/mosra/magnum.git"
 
   depends_on "cmake"
