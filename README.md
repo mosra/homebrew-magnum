@@ -2,7 +2,7 @@ macOS Homebrew packages for Magnum and related projects
 =======================================================
 
 [![Join the chat at https://gitter.im/mosra/magnum](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mosra/magnum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/mosra/homebrew-magnum.svg?branch=master)](https://travis-ci.org/mosra/homebrew-magnum)
+[![Build Status](https://travis-ci.com/mosra/homebrew-magnum.svg?branch=master)](https://travis-ci.com/mosra/homebrew-magnum)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Install any of the formulas like this:
