@@ -12,9 +12,11 @@ class MagnumPlugins < Formula
   depends_on "devil" => :optional
   depends_on "faad2" => :optional
   depends_on "freetype" => :recommended
+  depends_on "glslang" => :recommended
   depends_on "harfbuzz" => :recommended
   depends_on "libpng" => :recommended
   depends_on "jpeg" => :recommended
+  depends_on "spirv-tools" => :recommended
 
   def install
     # Bundle Basis Universal, a commit that's before the UASTC support (which
@@ -50,6 +52,7 @@ class MagnumPlugins < Formula
         "-DWITH_DRWAVAUDIOIMPORTER=ON",
         "-DWITH_FAAD2AUDIOIMPORTER=#{(build.with? 'faad2') ? 'ON' : 'OFF'}",
         "-DWITH_FREETYPEFONT=#{(build.with? 'freetype') ? 'ON' : 'OFF'}",
+        "-DWITH_GLSLANGSHADERCONVERTER=#{(build.with? 'glslang') ? 'ON' : 'OFF'}",
         "-DWITH_HARFBUZZFONT=#{(build.with? 'harfbuzz') ? 'ON' : 'OFF'}",
         "-DWITH_JPEGIMAGECONVERTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
         "-DWITH_JPEGIMPORTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
@@ -59,6 +62,7 @@ class MagnumPlugins < Formula
         "-DWITH_PNGIMAGECONVERTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PNGIMPORTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PRIMITIVEIMPORTER=ON",
+        "-DWITH_SPIRVTOOLSSHADERCONVERTER=#{(build.with? 'glslang') ? 'ON' : 'OFF'}",
         "-DWITH_STANFORDIMPORTER=ON",
         "-DWITH_STANFORDSCENECONVERTER=ON",
         "-DWITH_STBIMAGECONVERTER=ON",
