@@ -65,7 +65,7 @@ class MagnumPlugins < Formula
         "-DWITH_PNGIMAGECONVERTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PNGIMPORTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-DWITH_PRIMITIVEIMPORTER=ON",
-        "-DWITH_SPIRVTOOLSSHADERCONVERTER=#{(build.with? 'glslang') ? 'ON' : 'OFF'}",
+        "-DWITH_SPIRVTOOLSSHADERCONVERTER=#{(build.with? 'spirv-tools') ? 'ON' : 'OFF'}",
         "-DWITH_STANFORDIMPORTER=ON",
         "-DWITH_STANFORDSCENECONVERTER=ON",
         "-DWITH_STBIMAGECONVERTER=ON",
