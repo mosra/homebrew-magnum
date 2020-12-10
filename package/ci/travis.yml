@@ -1,17 +1,17 @@
 matrix:
   include:
-  - language: cpp
-    os: osx
-    osx_image: xcode10.3
-    env:
-    - VERSION=HEAD
-    - JOBID=head
-  - language: cpp
-    os: osx
-    osx_image: xcode10.3
-    env:
-    - VERSION=stable
-    - JOBID=stable
+  #- language: cpp
+    #os: osx
+    #osx_image: xcode10.3
+    #env:
+    #- VERSION=HEAD
+    #- JOBID=head
+  #- language: cpp
+    #os: osx
+    #osx_image: xcode10.3
+    #env:
+    #- VERSION=stable
+    #- JOBID=stable
 
 install:
 # Brown magic. If I don't do this, the cursed thing fails compiling

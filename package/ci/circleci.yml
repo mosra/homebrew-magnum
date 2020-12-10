@@ -1,0 +1,103 @@
+version: 2.1
+
+notify:
+  webhooks:
+    # Unfortunately Gitter messages are too verbose (one five-line message per
+    # each job in the build matrix) and thus not wanted
+    #- url: https://webhooks.gitter.im/e/cfbadbd34d28708a57c6
+
+executors:
+  xcode-10_3:
+    macos:
+      xcode: 10.3.0
+
+commands:
+  install:
+    parameters:
+      head:
+        type: boolean
+    steps:
+    - run:
+        name: Update Homebrew
+        command: |
+          brew update
+          brew --version
+    - run:
+        name: Tap the repository
+        command: |
+          brew tap mosra/magnum
+    - run:
+        name: Install everything
+        command: |
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/corrade
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-plugins
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-extras
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-integration
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-bindings
+          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-examples
+    - checkout
+
+  verify-imageconverter:
+    steps:
+    - run:
+        name: Verify magnum-imageconverter
+        command: |
+          magnum-imageconverter package/ci/file.jpg file.png
+          file file.png
+
+  verify-sceneconverter:
+    steps:
+    - run:
+        name: Verify magnum-sceneconverter
+        command: |
+          magnum-sceneconverter package/ci/cube.obj cube.ply
+          file cube.ply
+
+  verify-shaderconverter:
+    steps:
+    - run:
+        name: Verify magnum-shaderconverter
+        command: |
+          magnum-shaderconverter package/ci/triangle-shaders.spv triangle-shaders.spvasm
+          file triangle-shaders.spvasm
+
+  verify-bindings:
+    steps:
+    - run:
+        name: Verify Python bindings
+        command: |
+          python3 -c "from magnum import *; print(Matrix3.rotation(Deg(25.0)))"
+
+jobs:
+  stable:
+    # Using 9.4 would be great to ensure compatibility, however spirv-tools
+    # isn't on the stale Homebrew on any earlier image than 10.3.
+    executor: xcode-10_3
+    steps:
+    - install:
+        head: false
+    - verify-imageconverter
+    # TODO: enable these when next release is out
+    #- verify-sceneconverter
+    #- verify-shaderconverter
+    - verify-bindings
+
+  head:
+    # Using 9.4 would be great to ensure compatibility, however spirv-tools
+    # isn't on the stale Homebrew on any earlier image than 10.3.
+    executor: xcode-10_3
+    steps:
+    - install:
+        head: true
+    - verify-imageconverter
+    - verify-sceneconverter
+    - verify-shaderconverter
+    - verify-bindings
+
+workflows:
+  version: 2
+  build:
+    jobs:
+    - stable
+    - head
