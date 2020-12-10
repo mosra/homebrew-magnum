@@ -18,6 +18,11 @@ commands:
         type: boolean
     steps:
     - run:
+        # Gory details: https://doc.magnum.graphics/magnum/platforms-macos.html#platforms-macos-troubleshooting-build-mysteriously-fails
+        name: Brown magic to uncrapify Xcode
+        command: |
+          sudo xcode-select -s /Library/Developer/CommandLineTools
+    - run:
         name: Update Homebrew
         command: |
           brew update
