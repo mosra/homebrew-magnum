@@ -23,6 +23,10 @@ commands:
         command: |
           sudo xcode-select -s /Library/Developer/CommandLineTools
     - run:
+        name: Brown magic to prevent a Python2 zombie from resurfacing
+        command: |
+          brew uninstall python@2
+    - run:
         name: Update Homebrew
         command: |
           brew update
