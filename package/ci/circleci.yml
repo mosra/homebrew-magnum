@@ -31,10 +31,21 @@ commands:
         command: |
           brew update
           brew --version
-    - run:
-        name: Tap the repository
-        command: |
-          brew tap mosra/magnum
+    - when:
+        condition:
+          # What kind of INSANE language is this?!
+          equal: [ master, << pipeline.git.branch >> ]
+        steps:
+        - run:
+            name: Tap the repository
+            command: |
+              brew tap mosra/magnum
+    - unless:
+        condition:
+          equal: [ master, << pipeline.git.branch >> ]
+        steps:
+        - checkout:
+            path: /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
     - run:
         name: Install everything
         command: |
