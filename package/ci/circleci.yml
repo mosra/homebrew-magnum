@@ -22,6 +22,13 @@ commands:
         command: |
           brew uninstall python@2
     - run:
+        # FFS, idiotic developers doing dumb things. This whole thing is like
+        # Bitcoin, a slowly burning dumpster fire that just DOESN'T SCALE.
+        name: More brown magic to make Homebrew updateable
+        command: |
+          git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+          git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow
+    - run:
         name: Update Homebrew
         command: |
           brew update
