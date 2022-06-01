@@ -1,9 +1,11 @@
 version: 2.1
 
 executors:
-  xcode-10_3:
+  # Used 10.3 before, but it started building CMake from sources. That's crap,
+  # so use something newer instead.
+  xcode-11_5:
     macos:
-      xcode: 10.3.0
+      xcode: 11.5
 
 commands:
   install:
@@ -11,17 +13,6 @@ commands:
       head:
         type: boolean
     steps:
-    - run:
-        name: Brown magic to prevent a Python2 zombie from resurfacing
-        command: |
-          brew uninstall python@2
-    - run:
-        # FFS, idiotic developers doing dumb things. This whole thing is like
-        # Bitcoin, a slowly burning dumpster fire that just DOESN'T SCALE.
-        name: More brown magic to make Homebrew updateable
-        command: |
-          git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
-          git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow
     - run:
         name: Update Homebrew
         command: |
@@ -87,9 +78,7 @@ commands:
 
 jobs:
   stable:
-    # Using 9.4 would be great to ensure compatibility, however spirv-tools
-    # isn't on the stale Homebrew on any earlier image than 10.3.
-    executor: xcode-10_3
+    executor: xcode-11_5
     steps:
     - install:
         head: false
@@ -100,9 +89,7 @@ jobs:
     - verify-bindings
 
   head:
-    # Using 9.4 would be great to ensure compatibility, however spirv-tools
-    # isn't on the stale Homebrew on any earlier image than 10.3.
-    executor: xcode-10_3
+    executor: xcode-11_5
     steps:
     - install:
         head: true
