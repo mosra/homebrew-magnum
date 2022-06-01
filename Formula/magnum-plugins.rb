@@ -4,7 +4,7 @@ class MagnumPlugins < Formula
   url "https://github.com/mosra/magnum-plugins/archive/v2020.06.tar.gz"
   # wget https://github.com/mosra/magnum-plugins/archive/v2020.06.tar.gz -O - | sha256sum
   sha256 "8650cab43570c826d2557d5b42459150d253316f7f734af8b3e7d0883510b40a"
-  head "git://github.com/mosra/magnum-plugins.git"
+  head "https://github.com/mosra/magnum-plugins.git"
 
   depends_on "assimp" => :recommended
   depends_on "cmake" => :build
@@ -64,6 +64,7 @@ class MagnumPlugins < Formula
         # complain to Homebrew about this insane non-obvious filesystem layout.
         "-DCMAKE_INSTALL_NAME_DIR:STRING=#{lib}",
         "-DWITH_ASSIMPIMPORTER=#{(build.with? 'assimp') ? 'ON' : 'OFF'}",
+        "-DWITH_ASTCIMPORTER=ON",
         "-DWITH_BASISIMAGECONVERTER=ON",
         "-DWITH_BASISIMPORTER=ON",
         "-DWITH_CGLTFIMPORTER=ON",
@@ -75,6 +76,7 @@ class MagnumPlugins < Formula
         "-DWITH_FAAD2AUDIOIMPORTER=#{(build.with? 'faad2') ? 'ON' : 'OFF'}",
         "-DWITH_FREETYPEFONT=#{(build.with? 'freetype') ? 'ON' : 'OFF'}",
         "-DWITH_GLSLANGSHADERCONVERTER=#{(build.with? 'glslang') ? 'ON' : 'OFF'}",
+        "-DWITH_GLTFIMPORTER=ON",
         "-DWITH_HARFBUZZFONT=#{(build.with? 'harfbuzz') ? 'ON' : 'OFF'}",
         "-DWITH_JPEGIMAGECONVERTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
         "-DWITH_JPEGIMPORTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",

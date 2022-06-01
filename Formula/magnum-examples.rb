@@ -4,7 +4,7 @@ class MagnumExamples < Formula
   url "https://github.com/mosra/magnum-examples/archive/v2020.06.tar.gz"
   # wget https://github.com/mosra/magnum-examples/archive/v2020.06.tar.gz -O - | sha256sum
   sha256 "d93c4fa034667f92d83459c06254e70619865f8568e46d9d72bb06aac29b7153"
-  head "git://github.com/mosra/magnum-examples.git"
+  head "https://github.com/mosra/magnum-examples.git"
 
   depends_on "cmake"
   depends_on "magnum"
@@ -49,7 +49,7 @@ class MagnumExamples < Formula
         "-DWITH_RAYTRACING_EXAMPLE=ON",
         "-DWITH_SHADOWS_EXAMPLE=ON",
         "-DWITH_TEXT_EXAMPLE=ON",
-        "-DWITH_TEXTUREDTRIANGLE_EXAMPLE=ON",
+        "-DWITH_TEXTUREDQUAD_EXAMPLE=ON",
         "-DWITH_TRIANGLE_EXAMPLE=ON",
         "-DWITH_TRIANGLE_PLAIN_GLFW_EXAMPLE=OFF",
         "-DWITH_TRIANGLE_SOKOL_EXAMPLE=OFF",
