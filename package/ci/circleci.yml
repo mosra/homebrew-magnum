@@ -33,16 +33,33 @@ commands:
         steps:
         - checkout:
             path: /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+        - run:
+            name: Take Homebrew out for a piss once again and then restore the proper tap branch
+            command: |
+              brew update --preinstall
+              cd /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+              git checkout << pipeline.git.branch >>
     - run:
         name: Install everything
+        # To be EXTRA SURE it doesn't change the tap under my fingers again,
+        # disallow it from updating anything
         command: |
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/corrade
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-plugins
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-extras
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-integration
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-bindings
-          brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-examples
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/corrade
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-plugins
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-extras
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-integration
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-bindings
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-examples
+    - unless:
+        condition:
+          equal: [ master, << pipeline.git.branch >> ]
+        steps:
+        - run:
+            name: Once again check that Homebrew didn't replace the tap with something else
+            command: |
+              cd /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+              [[ $(git rev-parse --abbrev-ref HEAD) == "<< pipeline.git.branch >>" ]]
     - checkout
 
   verify-imageconverter:
