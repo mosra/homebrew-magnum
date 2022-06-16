@@ -100,8 +100,8 @@ jobs:
     - install:
         head: false
     - verify-imageconverter
-    # TODO: enable these when next release is out
-    #- verify-sceneconverter
+    - verify-sceneconverter
+    # TODO: enable this when next release is out
     #- verify-shaderconverter
     - verify-bindings
 
