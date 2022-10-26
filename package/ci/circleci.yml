@@ -1,11 +1,10 @@
 version: 2.1
 
 executors:
-  # Used 10.3 before, but it started building CMake from sources. That's crap,
-  # so use something newer instead.
-  xcode-11_5:
+  # Anything below 11.7 is deprecated as of June 6th 2022
+  xcode-11_7:
     macos:
-      xcode: 11.5
+      xcode: 11.7.0
 
 commands:
   install:
@@ -95,7 +94,7 @@ commands:
 
 jobs:
   stable:
-    executor: xcode-11_5
+    executor: xcode-11_7
     steps:
     - install:
         head: false
@@ -106,7 +105,7 @@ jobs:
     - verify-bindings
 
   head:
-    executor: xcode-11_5
+    executor: xcode-11_7
     steps:
     - install:
         head: true
