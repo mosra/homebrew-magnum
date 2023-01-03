@@ -1,10 +1,11 @@
 version: 2.1
 
 executors:
-  # Anything below 11.7 is deprecated as of June 6th 2022
-  xcode-11_7:
+  # Xcode 11 images compile dependencies such as SDL from scratch (ugh), it
+  # fetches bottles only if we don't update at all (which we need to)
+  xcode-13_2:
     macos:
-      xcode: 11.7.0
+      xcode: 13.2.1
 
 commands:
   install:
@@ -94,7 +95,7 @@ commands:
 
 jobs:
   stable:
-    executor: xcode-11_7
+    executor: xcode-13_2
     steps:
     - install:
         head: false
@@ -105,7 +106,7 @@ jobs:
     - verify-bindings
 
   head:
-    executor: xcode-11_7
+    executor: xcode-13_2
     steps:
     - install:
         head: true
