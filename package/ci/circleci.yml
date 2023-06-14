@@ -1,11 +1,10 @@
 version: 2.1
 
 executors:
-  # Xcode 11 images compile dependencies such as SDL from scratch (ugh), it
-  # fetches bottles only if we don't update at all (which we need to)
-  xcode-13_2:
+  # Anything below 13.4.1 is going to be removed on August 7th 2023
+  xcode-13_4:
     macos:
-      xcode: 13.2.1
+      xcode: 13.4.1
 
 commands:
   install:
@@ -95,7 +94,7 @@ commands:
 
 jobs:
   stable:
-    executor: xcode-13_2
+    executor: xcode-13_4
     steps:
     - install:
         head: false
@@ -106,7 +105,7 @@ jobs:
     - verify-bindings
 
   head:
-    executor: xcode-13_2
+    executor: xcode-13_4
     steps:
     - install:
         head: true
