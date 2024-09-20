@@ -1,10 +1,12 @@
 version: 2.1
 
 executors:
-  # Anything below 13.4.1 is going to be removed on August 7th 2023
+  # Anything below 13.4.1 (and all x86 variants) are deprecated as of June 28th
+  # 2024
   xcode-13_4:
     macos:
       xcode: 13.4.1
+    resource_class: macos.m1.medium.gen1
 
 commands:
   install:
@@ -31,12 +33,12 @@ commands:
           equal: [ master, << pipeline.git.branch >> ]
         steps:
         - checkout:
-            path: /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+            path: /opt/homebrew/Library/Taps/mosra/homebrew-magnum
         - run:
             name: Take Homebrew out for a piss once again and then restore the proper tap branch
             command: |
               brew update --preinstall
-              cd /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+              cd /opt/homebrew/Library/Taps/mosra/homebrew-magnum
               git checkout << pipeline.git.branch >>
     - run:
         name: Install everything
@@ -57,7 +59,7 @@ commands:
         - run:
             name: Once again check that Homebrew didn't replace the tap with something else
             command: |
-              cd /usr/local/Homebrew/Library/Taps/mosra/homebrew-magnum
+              cd /opt/homebrew/Library/Taps/mosra/homebrew-magnum
               [[ $(git rev-parse --abbrev-ref HEAD) == "<< pipeline.git.branch >>" ]]
     - checkout
 
