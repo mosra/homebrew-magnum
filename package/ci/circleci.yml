@@ -19,6 +19,18 @@ commands:
         command: |
           brew update
           brew --version
+    - run:
+        name: Uninstall the pyenv crap and install plain python instead
+        # Otherwise magnum bindings installed by homebrew are unreachable by
+        # actual user-side python. THIS ALL USED TO WORK BUT NOT ANYMORE. They
+        # subsequently added `brew pyenv-sync` in an attempt to fix this trash
+        # fire, but that damn thing doesn't work at all either. Fuck it, then.
+        # https://github.com/orgs/Homebrew/discussions/4664
+        # https://github.com/Homebrew/brew/issues/17563
+        command: |
+          HOMEBREW_NO_AUTO_UPDATE=1 brew remove pyenv
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install python
+          rm -r ~/.pyenv
     - when:
         condition:
           # What kind of INSANE language is this?!
