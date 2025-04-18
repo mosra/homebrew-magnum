@@ -48,8 +48,11 @@ commands:
             path: /opt/homebrew/Library/Taps/mosra/homebrew-magnum
         - run:
             name: Take Homebrew out for a piss once again and then restore the proper tap branch
+            # Used to be --preinstall, now it's --auto-update. FUCK YOU for not
+            # properly documenting any of this and for breaking stuff every 6
+            # months. https://github.com/orgs/Homebrew/discussions/5896
             command: |
-              brew update --preinstall
+              brew update --auto-update
               cd /opt/homebrew/Library/Taps/mosra/homebrew-magnum
               git checkout << pipeline.git.branch >>
     - run:
