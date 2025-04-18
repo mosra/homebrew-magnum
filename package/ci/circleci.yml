@@ -1,11 +1,11 @@
 version: 2.1
 
 executors:
-  # Anything below 13.4.1 (and all x86 variants) are deprecated as of June 28th
-  # 2024
-  xcode-13_4:
+  # On 13.4.1 it attempts to build Python from scratch because "such old
+  # version is not supported", FFS. April 2025.
+  xcode-14_3:
     macos:
-      xcode: 13.4.1
+      xcode: 14.3.1
     resource_class: macos.m1.medium.gen1
 
 commands:
@@ -108,7 +108,7 @@ commands:
 
 jobs:
   stable:
-    executor: xcode-13_4
+    executor: xcode-14_3
     steps:
     - install:
         head: false
@@ -119,7 +119,7 @@ jobs:
     - verify-bindings
 
   head:
-    executor: xcode-13_4
+    executor: xcode-14_3
     steps:
     - install:
         head: true
