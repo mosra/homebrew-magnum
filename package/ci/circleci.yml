@@ -88,6 +88,18 @@ commands:
               [[ $(git rev-parse --abbrev-ref HEAD) == "<< pipeline.git.branch >>" ]]
     - checkout
 
+  verify-version-headers:
+    steps:
+    - run:
+        name: Verify generated version.h files
+        command: |
+          grep "#define CORRADE_VERSION_COMMIT" /opt/homebrew/include/Corrade/version.h
+          grep "#define MAGNUM_VERSION_COMMIT" /opt/homebrew/include/Magnum/version.h
+          grep "#define MAGNUMPLUGINS_VERSION_COMMIT" /opt/homebrew/include/Magnum/versionPlugins.h
+          grep "#define MAGNUMEXTRAS_VERSION_COMMIT" /opt/homebrew/include/Magnum/versionExtras.h
+          grep "#define MAGNUMINTEGRATION_VERSION_COMMIT" /opt/homebrew/include/Magnum/versionIntegration.h
+          grep "#define MAGNUMBINDINGS_VERSION_COMMIT" /opt/homebrew/include/Magnum/versionBindings.h
+
   verify-imageconverter:
     steps:
     - run:
@@ -125,10 +137,10 @@ jobs:
     steps:
     - install:
         head: false
+    - verify-version-headers
     - verify-imageconverter
     - verify-sceneconverter
-    # TODO: enable this when next release is out
-    #- verify-shaderconverter
+    - verify-shaderconverter
     - verify-bindings
 
   head:
