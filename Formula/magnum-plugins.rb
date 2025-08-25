@@ -28,6 +28,9 @@ class MagnumPlugins < Formula
   # No idea why WebP has to depend on libpng, libjpeg, libtiff and giflib BY
   # DEFAULT but whatever. BLOAT BLOAT
   depends_on "webp" => :recommended
+  # Resvg is Rust, not sure what all it installs if enabled. So make it off by
+  # default.
+  depends_on "resvg" => :optional
 
   def install
     # Bundle Basis Universal, v1_50_0_2 for HEAD builds, a commit that's
@@ -97,15 +100,18 @@ class MagnumPlugins < Formula
         "-D#{option_prefix}WITH_JPEGIMAGECONVERTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
         "-D#{option_prefix}WITH_JPEGIMPORTER=#{(build.with? 'jpeg') ? 'ON' : 'OFF'}",
         "-DMAGNUM_WITH_KTXIMAGECONVERTER=ON",
-        "-DMAGNUM_WITH_KTXIMAGEIMPORTER=ON",
+        "-DMAGNUM_WITH_KTXIMPORTER=ON",
+        "-DMAGNUM_WITH_LUNASVGIMPORTER=OFF",
         "-DMAGNUM_WITH_MESHOPTIMIZERSCENECONVERTER=ON",
         "-DMAGNUM_WITH_MINIEXRIMAGECONVERTER=ON",
         "-DMAGNUM_WITH_OPENEXRIMAGECONVERTER=#{(build.with? 'openexr') ? 'ON' : 'OFF'}",
         "-DMAGNUM_WITH_OPENEXRIMPORTER=#{(build.with? 'openexr') ? 'ON' : 'OFF'}",
         "-D#{option_prefix}WITH_OPENGEXIMPORTER=ON",
+        "-DMAGNUM_WITH_PLUTOSVGIMPORTER=OFF",
         "-D#{option_prefix}WITH_PNGIMAGECONVERTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-D#{option_prefix}WITH_PNGIMPORTER=#{(build.with? 'libpng') ? 'ON' : 'OFF'}",
         "-D#{option_prefix}WITH_PRIMITIVEIMPORTER=ON",
+        "-DMAGNUM_WITH_RESVGIMPORTER=#{(build.with? 'resvg') ? 'ON' : 'OFF'}",
         "-DMAGNUM_WITH_SPIRVTOOLSSHADERCONVERTER=#{(build.with? 'spirv-tools') ? 'ON' : 'OFF'}",
         "-DMAGNUM_WITH_SPNGIMPORTER=#{(build.with? 'libspng') ? 'ON' : 'OFF'}",
         "-D#{option_prefix}WITH_STANFORDIMPORTER=ON",
