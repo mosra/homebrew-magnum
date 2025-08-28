@@ -4,5 +4,5 @@ set -e
 
 dir=$(dirname "$0")
 for i in corrade magnum magnum-plugins magnum-integration magnum-extras magnum-examples magnum-bindings; do
-    cp $dir/../../$i/package/homebrew/$i.rb $dir/../Formula/
+    cp $dir/../Formula/$i.rb $dir/../../$i/package/homebrew/
 done
