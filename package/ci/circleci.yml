@@ -1,12 +1,12 @@
 version: 2.1
 
 executors:
-  # On 13.4.1 it attempts to build Python from scratch because "such old
-  # version is not supported", FFS. April 2025.
-  xcode-14_3:
+  # On 14.3.1 it attempts to build Python from scratch because "such old
+  # version is not supported", FFS. January 2026. 15.4 is the oldest that is
+  # available on the default M4 resource class.
+  xcode-15_4:
     macos:
-      xcode: 14.3.1
-    resource_class: macos.m1.medium.gen1
+      xcode: 15.4.0
 
 commands:
   install:
@@ -133,7 +133,7 @@ commands:
 
 jobs:
   stable:
-    executor: xcode-14_3
+    executor: xcode-15_4
     steps:
     - install:
         head: false
@@ -144,7 +144,7 @@ jobs:
     - verify-bindings
 
   head:
-    executor: xcode-14_3
+    executor: xcode-15_4
     steps:
     - install:
         head: true
