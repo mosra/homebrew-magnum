@@ -15,16 +15,6 @@ commands:
         type: boolean
     steps:
     - run:
-        name: Undo whatever cursed crap is making Homebrew fail now
-        # As of August 2025, without this the brew update below fails with
-        # fatal: could not read Username for 'https://github.com': terminal prompts disabled
-        # Error: homebrew/homebrew-cask-versions does not exist! Run `brew untap homebrew/homebrew-cask-versions` to remove it.
-        # The uninstall is needed because otherwise it refuses to remove the
-        # tap. FFS.
-        command: |
-          brew uninstall temurin17
-          brew untap homebrew/homebrew-cask-versions
-    - run:
         name: Update Homebrew
         command: |
           brew update
