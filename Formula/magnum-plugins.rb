@@ -2,9 +2,9 @@ class MagnumPlugins < Formula
   desc "Plugins for the Magnum C++11 graphics engine"
   homepage "https://magnum.graphics"
   # git describe origin/master, except the `v` prefix
-  version "2020.06-1658-gb77a583aa"
+  version "2020.06-1703-g0d212b569"
   # Clone instead of getting an archive to have tags for version.h generation
-  url "https://github.com/mosra/magnum-plugins.git", revision: "b77a583aa"
+  url "https://github.com/mosra/magnum-plugins.git", revision: version.to_str().rpartition('g')[2]
   head "https://github.com/mosra/magnum-plugins.git"
 
   depends_on "assimp" => :recommended
