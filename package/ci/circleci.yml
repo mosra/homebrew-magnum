@@ -28,12 +28,12 @@ commands:
         # https://github.com/orgs/Homebrew/discussions/4664
         # https://github.com/Homebrew/brew/issues/17563
         #
-        # The yes is there because the damn thing now (June 2026) asks for
+        # The echo "y" is there because the damn thing now (June 2026) asks for
         # confirmation to install 9 dependency packages. ON A CI. ASKING FOR
         # SOMEONE TO PRESS Y IN A NON-INTERACTIVE TERMINAL. FUCK OFF.
         command: |
           HOMEBREW_NO_AUTO_UPDATE=1 brew remove pyenv
-          yes | HOMEBREW_NO_AUTO_UPDATE=1 brew install python
+          echo "y" | HOMEBREW_NO_AUTO_UPDATE=1 brew install python
           rm -r ~/.pyenv
     - when:
         condition:
