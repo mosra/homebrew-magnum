@@ -33,7 +33,7 @@ commands:
         # SOMEONE TO PRESS Y IN A NON-INTERACTIVE TERMINAL. FUCK OFF.
         command: |
           HOMEBREW_NO_AUTO_UPDATE=1 brew remove pyenv
-          echo "y" | HOMEBREW_NO_AUTO_UPDATE=1 brew install python
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install python --no-ask
           rm -r ~/.pyenv
     - when:
         condition:
@@ -63,14 +63,17 @@ commands:
         name: Install everything
         # To be EXTRA SURE it doesn't change the tap under my fingers again,
         # disallow it from updating anything
+        #
+        # The echo "y" is there because the damn thing now (June 2026) asks for
+        # confirmation to install, for basically everything.
         command: |
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/corrade
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-plugins
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-extras
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-integration
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-bindings
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-examples
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/corrade --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-plugins --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-extras --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-integration --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-bindings --no-ask
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install <<# parameters.head >> --HEAD <</ parameters.head >> mosra/magnum/magnum-examples --no-ask
     - unless:
         condition:
           equal: [ master, << pipeline.git.branch >> ]
